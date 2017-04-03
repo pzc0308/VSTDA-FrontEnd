@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body ng-controller='ToDoController as toDoCtrl'>
+    <h1>Very Simple To Do App</h1>
+
+        <label for="">Text</label>
+        <input type="text" class="form-control" ng-model="toDoCtrl.add.item" />
+        <button ng-click="toDoCtrl.addItem()">Add To List</button>
+        <label for="">Prority</label>
+        <select ng-model="toDoCtrl.add.priority" ng-options="priority as priority.name for priority in toDoCtrl.priorities"></select>
+        <button ng-click="toDoCtrl.sortField='priority.number'">Sort low to high</button>
+        <button ng-click="toDoCtrl.sortField='-priority.number'">Sort high to low</button>
+        <button ng-click="toDoCtrl.sortField='item'">Alphabetically</button></div>
+
+    <ul>
+      <li ng-repeat="input in toDoCtrl.items | orderBy: toDoCtrl.sortField">{{input.text}} </li>
+    </ul>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="app/app.module.js"></script>
+    <script type="text/javascript" src="app/todo/todo.controller.js"></script>
+    <script type="text/javascript" src="app/todo/todo.factory.js"></script>
+
+  </body>
+
+</html>
